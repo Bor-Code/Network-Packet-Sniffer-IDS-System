@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from tkinter import ttk
 
-class IDSGuy(ctk.CTk):
+class IDSGui(ctk.CTk):
     def __init__(self, start_callback):
         super().__init__()
 
@@ -18,7 +18,6 @@ class IDSGuy(ctk.CTk):
         self.start_btn = ctk.CTkButton(self.top_frame, text="Sniffing Başlat", command=start_callback)
         self.start_btn.pack(side="right", padx=20)
 
-        # Orta Panel: Paket Listesi (Tablo)
         self.table_frame = ctk.CTkFrame(self)
         self.table_frame.pack(pady=10, padx=10, fill="both", expand=True)
 
@@ -35,7 +34,7 @@ class IDSGuy(ctk.CTk):
 
     def update_table(self, data):
         self.tree.insert("", "end", values=(data['src_ip'], data['dst_ip'], data['protocol'], "64"))
-        if len(self.tree.get_children()) > 20: # Tabloyu temiz tut
+        if len(self.tree.get_children()) > 20:
             self.tree.delete(self.tree.get_children()[0])
 
     def log_alert(self, message):
